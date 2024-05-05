@@ -5,26 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace starShipFactory.ship.shipComponent
+namespace starShipFactory.ship.shipComponent.specificalComponent
 {
     public class Wings : Component
     {
         public WingsType Type { get; }
-        
+
         private Wings(WingsType type)
         {
-            this.Type = type;
+            Type = type;
         }
-        
-        public static Wings Of(WingsType type = WingsType.Scrap)
-        {         
+
+        public static Wings Of(WingsType type = WingsType.Wings_scrap)
+        {
             return new Wings(type);
         }
     }
 
     public enum WingsType
     {
-        Scrap,
+        Wings_scrap,
         Wings_WE1,
         Wings_WS1,
         Wings_WC1

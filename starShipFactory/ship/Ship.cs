@@ -1,4 +1,6 @@
-﻿using starShipFactory.ship.shipComponent;
+﻿using starShipFactory.cache;
+using starShipFactory.ship.shipComponent;
+using starShipFactory.ship.shipComponent.specificalComponent;
 
 namespace starShipFactory.ship
 {

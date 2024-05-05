@@ -1,4 +1,4 @@
-﻿using starShipFactory.ship.shipComponent;
+﻿using starShipFactory.ship.shipComponent.specificalComponent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +14,7 @@ namespace starShipFactory.ship.shipType
         {
         }
 
-        public static Explorer Create(string name, Hull hull, Engine engine, Wings wings, Thrusters thruster)
+        public static Explorer Of(string name, Hull hull, Engine engine, Wings wings, Thrusters thruster)
         {
             return (Explorer)Ship.Of(name, new Hull[0], new Engine[] { engine }, new Thrusters[] { thruster }, new Wings[] { wings });
         }

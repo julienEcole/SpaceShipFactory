@@ -1,8 +1,10 @@
-namespace starShipFactory.ship.shipComponent
+using starShipFactory.ship.shipComponent;
+
+namespace starShipFactory.cache
 {
     public static class Atelier
     {
-        public static Dictionary<Component, int> Stock { get; } = new Dictionary<Component, int>();
+        static readonly Dictionary<Component, int> Stock = new Dictionary<Component, int>();
 
         static Atelier()
         {

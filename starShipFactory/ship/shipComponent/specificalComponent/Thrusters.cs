@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace starShipFactory.ship.shipComponent
+namespace starShipFactory.ship.shipComponent.specificalComponent
 {
     public class Thrusters : Component
     {
@@ -13,8 +13,9 @@ namespace starShipFactory.ship.shipComponent
         {
             this.type = type;
         }
-        
-        public static Thrusters of(ThrusterType type = ThrusterType.Scrap) {         
+
+        public static Thrusters of(ThrusterType type = ThrusterType.Thrusters_scrap)
+        {
             Thrusters nouveau = new Thrusters(type);
             //ajouter l'élément a l'inventaire de l'atelier (cache pour composant non utilisé) quand il sera dispo
             return nouveau;
@@ -23,9 +24,9 @@ namespace starShipFactory.ship.shipComponent
 
     public enum ThrusterType
     {
-        Scrap,
-        Thruster_TE1,
-        Thruster_TS1,
-        Thruster_TC1
+        Thrusters_scrap,
+        Thrusters_TE1,
+        Thrusters_TS1,
+        Thrusters_TC1
     }
 }

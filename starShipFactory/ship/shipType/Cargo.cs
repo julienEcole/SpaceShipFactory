@@ -1,4 +1,4 @@
-﻿using starShipFactory.ship.shipComponent;
+﻿using starShipFactory.ship.shipComponent.specificalComponent;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using starShipFactory.ship;
 
-namespace starShipFactory.ship
+namespace starShipFactory.cache
 {
     public static class Hangar
     {

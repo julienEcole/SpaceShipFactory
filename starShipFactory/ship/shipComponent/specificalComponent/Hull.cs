@@ -4,26 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace starShipFactory.ship.shipComponent
+namespace starShipFactory.ship.shipComponent.specificalComponent
 {
     public class Hull : Component
     {
         public CargoType Type { get; }
-        
+
         private Hull(CargoType type)
         {
-            this.Type = type;
+            Type = type;
         }
-        
-        public static Hull Of(CargoType type = CargoType.Scrap)
-        {         
+
+        public static Hull Of(CargoType type = CargoType.Hull_scrap)
+        {
             return new Hull(type);
         }
     }
 
     public enum CargoType
     {
-        Scrap,
+        Hull_scrap,
         Hull_HC1,
         Engine_EC1,
         Wings_WC1,

@@ -1,4 +1,5 @@
-﻿using starShipFactory.ship.shipComponent;
+﻿using starShipFactory.cache;
+using starShipFactory.ship.shipComponent.specificalComponent;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,29 @@ namespace starShipFactory.ship.shipType
         {
         }
 
-        public static Speeder Create(string name, Engine engine, Wings wings, Thrusters thruster1, Thrusters thruster2)
+        public static Speeder Of(string name, Engine engine, Wings wings, Thrusters thruster1, Thrusters thruster2)
         {
-            return (Speeder)Ship.Of(name, new Hull[0], new Engine[] { engine }, new Thrusters[] { thruster1, thruster2 }, new Wings[] { wings });
+            Speeder leSpeeder = new Speeder(name, engine, wings, thruster1, thruster2);
+            Hangar.AddShip(leSpeeder);
+            return leSpeeder;
         }
+
+        public static Speeder Of(string name, Engine engine, Wings wings, Thrusters[] thrusters)
+        {
+            if (thrusters.Length >= 2) {
+                return Speeder.Of(name, engine, wings, thrusters[0], thrusters[1]);
+            }
+            throw new ArgumentException("il manque des thrusters pour construire ce speeder");
+        }
+
+        public static Speeder Of(string name, Engine[] engine, Wings[] wings, Thrusters[] thrusters)
+        {
+            if (thrusters.Length >= 2 && engine.Length >= 1 && wings.Length >)
+            {
+                return Speeder.Of(name, engine[0], wings[0], thrusters[0], thrusters[1]);
+            }
+            throw new ArgumentException("il manque des thrusters pour construire ce speeder");
+        }
+
     }
 }
