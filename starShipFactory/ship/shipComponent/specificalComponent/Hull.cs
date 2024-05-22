@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,10 +24,9 @@ namespace starShipFactory.ship.shipComponent.specificalComponent
 
     public enum CargoType
     {
+        [Description("Hull_scrap")]
         Hull_scrap,
-        Hull_HC1,
-        Engine_EC1,
-        Wings_WC1,
-        Thruster_TC1
+        [Description("Hull_HC1")]
+        Hull_HC1
     }
 }
