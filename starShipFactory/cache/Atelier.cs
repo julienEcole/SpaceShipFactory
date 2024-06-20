@@ -24,6 +24,11 @@ namespace starShipFactory.cache
             }
         }
 
+        public static void AddStock(Component theComponent, int quantity)
+        {
+            AddStock(theComponent.ToString(), quantity);
+        }
+
         public static bool RemoveStock(string type, int quantity)
         {
             if (Stock.ContainsKey(type))

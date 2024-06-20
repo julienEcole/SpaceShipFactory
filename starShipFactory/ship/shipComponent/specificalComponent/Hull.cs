@@ -28,14 +28,7 @@ namespace starShipFactory.ship.shipComponent.specificalComponent
             return /*{GetType().Name}_*/$"{typeName}";
         }
     }
-
-<<<<<<< Updated upstream
-    
-
-    public enum CargoType
-=======
     public enum HullType
->>>>>>> Stashed changes
     {
         [Description("Hull_scrap")]
         Hull_scrap,
