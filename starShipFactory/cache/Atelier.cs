@@ -101,7 +101,11 @@ namespace starShipFactory.cache
 
         public static int GetQuantity(string type)
         {
-            return Stock.ContainsKey(type) ? Stock[type] : 0;
+            if (Stock.ContainsKey(type))
+            {
+                return Stock[type];
+            }
+            else return 0;
         }
 
         internal static IEnumerable<KeyValuePair<string, int>> GetStocks()
