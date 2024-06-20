@@ -10,6 +10,6 @@ namespace starShipFactory.ship.shipComponent
     {
 
         public abstract string ToString();
-        //public static abstract Component of();
+        //public static abstract Component Of();
     }
 }
