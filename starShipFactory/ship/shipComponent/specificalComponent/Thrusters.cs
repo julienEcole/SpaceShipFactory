@@ -16,7 +16,7 @@ namespace starShipFactory.ship.shipComponent.specificalComponent
             this.Type = type;
         }
 
-        public static Thrusters of(ThrusterType type = ThrusterType.Thrusters_scrap)
+        public static Thrusters Of(ThrusterType type = ThrusterType.Thrusters_scrap)
         {
             Thrusters nouveau = new Thrusters(type);
             //ajouter l'élément a l'inventaire de l'atelier (cache pour composant non utilisé) quand il sera dispo

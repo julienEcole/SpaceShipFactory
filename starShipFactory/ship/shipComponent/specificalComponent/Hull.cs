@@ -5,14 +5,14 @@ namespace starShipFactory.ship.shipComponent.specificalComponent
 {
     public class Hull : Component
     {
-        public CargoType Type { get; }
+        public HullType Type { get; }
 
-        private Hull(CargoType type)
+        private Hull(HullType type)
         {
             Type = type;
         }
 
-        public static Hull Of(CargoType type = CargoType.Hull_scrap)
+        public static Hull Of(HullType type = HullType.Hull_scrap)
         {
             return new Hull(type);
         }
@@ -29,9 +29,13 @@ namespace starShipFactory.ship.shipComponent.specificalComponent
         }
     }
 
+<<<<<<< Updated upstream
     
 
     public enum CargoType
+=======
+    public enum HullType
+>>>>>>> Stashed changes
     {
         [Description("Hull_scrap")]
         Hull_scrap,
