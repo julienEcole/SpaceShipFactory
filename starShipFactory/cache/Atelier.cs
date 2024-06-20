@@ -4,11 +4,13 @@ namespace starShipFactory.cache
 {
     public static class Atelier
     {
-        static readonly Dictionary<string, int> Stock = new Dictionary<string, int>();
-        static readonly Dictionary<string, int> InProduction = new Dictionary<string, int>();
+        static readonly Dictionary<string, int> Stock;
+        static readonly Dictionary<string, int> InProduction;
 
         static Atelier()
         {
+            Stock = new Dictionary<string, int>();
+            InProduction = new Dictionary<string, int>();
             // Initialiser le stock avec des valeurs par defaut
         }
 
