@@ -43,5 +43,10 @@ namespace starShipFactory.cache
         {
             return Stock.ContainsKey(type) ? Stock[type] : 0;
         }
+
+        internal static IEnumerable<KeyValuePair<string, int>> GetStocks()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
