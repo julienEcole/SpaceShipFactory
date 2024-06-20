@@ -31,7 +31,7 @@ namespace starShipFactory.ship.shipComponent.specificalComponent
                                    .First()
                                    .GetCustomAttribute<DescriptionAttribute>()?.Description ?? Type.ToString();
 
-            return $"{GetType().Name}_{typeName}";
+            return /*{GetType().Name}_*/$"{typeName}";
         }
 
     }

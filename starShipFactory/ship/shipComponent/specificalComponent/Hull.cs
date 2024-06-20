@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Reflection;
 
 namespace starShipFactory.ship.shipComponent.specificalComponent
 {
@@ -20,7 +16,20 @@ namespace starShipFactory.ship.shipComponent.specificalComponent
         {
             return new Hull(type);
         }
+
+        override public string ToString()
+        {
+            // Utiliser Reflection pour obtenir la valeur de description de l'énumération
+            string typeName = Type.GetType()
+                                   .GetMember(Type.ToString())
+                                   .First()
+                                   .GetCustomAttribute<DescriptionAttribute>()?.Description ?? Type.ToString();
+
+            return /*{GetType().Name}_*/$"{typeName}";
+        }
     }
+
+    
 
     public enum CargoType
     {
