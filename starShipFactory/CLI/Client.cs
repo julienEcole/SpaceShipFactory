@@ -110,7 +110,7 @@ namespace starShipFactory.CLI
                         Component component = CreateComponentFromString(componentName);
                         if (component != null)
                         {
-                            Atelier.Add(component, quantity);
+                            Atelier.AddStock(component, quantity);
                         }
                         else
                         {
@@ -146,7 +146,7 @@ namespace starShipFactory.CLI
                     }
                     break;
                 case "hull":
-                    if (Enum.TryParse(typeName, true, out HullType hullType))
+                    if (Enum.TryParse(typeName, true, out hullType hullType))
                     {
                         return Hull.Of(hullType);
                     }

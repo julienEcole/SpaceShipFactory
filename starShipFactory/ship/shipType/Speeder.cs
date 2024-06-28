@@ -32,7 +32,7 @@ namespace starShipFactory.ship.shipType
 
         public static Speeder Of(string name, Engine[] engine, Wings[] wings, Thrusters[] thrusters)
         {
-            if (thrusters.Length >= 2 && engine.Length >= 1 && wings.Length >)
+            if (thrusters.Length >= 2 && engine.Length >= 1 && wings.Length >= 1)
             {
                 return Speeder.Of(name, engine[0], wings[0], thrusters[0], thrusters[1]);
             }
