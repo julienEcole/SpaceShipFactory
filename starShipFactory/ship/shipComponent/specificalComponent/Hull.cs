@@ -17,17 +17,12 @@ namespace starShipFactory.ship.shipComponent.specificalComponent
             return new Hull(type);
         }
 
-        override public string ToString()
+        public override string ToString()
         {
-            // Utiliser Reflection pour obtenir la valeur de description de l'énumération
-            string typeName = Type.GetType()
-                                   .GetMember(Type.ToString())
-                                   .First()
-                                   .GetCustomAttribute<DescriptionAttribute>()?.Description ?? Type.ToString();
-
-            return /*{GetType().Name}_*/$"{typeName}";
+            return ShipComponentDescription.GetDescription(Type);
         }
     }
+
     public enum HullType
     {
         [Description("Hull_scrap")]
