@@ -16,6 +16,7 @@ namespace starShipFactory.cache
         {
             get { return _instance; }
         }
+        
 
         public static void AddShip(Ship ship)
         {

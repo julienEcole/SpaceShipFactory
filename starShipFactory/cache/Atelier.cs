@@ -16,6 +16,7 @@ namespace starShipFactory.cache
             Stock = new Dictionary<string, int>();
             InProduction = new Dictionary<string, int>();
         }
+        //
 
         private Atelier() { }
 
