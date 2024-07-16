@@ -1,9 +1,13 @@
+using System;
+using System.Collections.Generic;
 using starShipFactory.ship.shipComponent;
 
 namespace starShipFactory.cache
 {
     public static class Atelier
     {
+        private static readonly Atelier _instance = new Atelier();
+
         static readonly Dictionary<string, int> Stock;
         static readonly Dictionary<string, int> InProduction;
 
@@ -11,7 +15,13 @@ namespace starShipFactory.cache
         {
             Stock = new Dictionary<string, int>();
             InProduction = new Dictionary<string, int>();
-            // Initialiser le stock avec des valeurs par defaut
+        }
+
+        private Atelier() { }
+
+        public static Atelier Instance
+        {
+            get { return _instance; }
         }
 
         public static void AddStock(string typeName, int quantity)
@@ -85,7 +95,7 @@ namespace starShipFactory.cache
             }
         }
 
-        public static void getBackAllToStockFromProduction()
+        public static void GetBackAllToStockFromProduction()
         {
             foreach (var item in InProduction)
             {

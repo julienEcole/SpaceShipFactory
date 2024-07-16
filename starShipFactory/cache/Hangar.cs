@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using starShipFactory.ship;
 
 namespace starShipFactory.cache
 {
     public static class Hangar
     {
+        private static readonly Hangar _instance = new Hangar();
+
         static readonly Dictionary<string, Ship> ShipsByName = new Dictionary<string, Ship>();
+
+        private Hangar() { }
+
+        public static Hangar Instance
+        {
+            get { return _instance; }
+        }
 
         public static void AddShip(Ship ship)
         {
@@ -19,7 +25,6 @@ namespace starShipFactory.cache
             }
             else
             {
-                // Gérer le cas où un vaisseau avec le même nom existe déjà
                 throw new ArgumentException("A ship with the same name already exists in the cache.");
             }
         }
@@ -37,7 +42,6 @@ namespace starShipFactory.cache
             }
             else
             {
-                // Gérer le cas où aucun vaisseau avec le nom donné n'existe dans le cache
                 return null;
             }
         }
