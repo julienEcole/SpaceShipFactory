@@ -31,6 +31,15 @@ namespace starShipFactory // Note: actual namespace depends on the project name.
             {
                 Console.WriteLine(ex.Message);
             }
+
+            // Initialisation de OrderManager
+            var orderManager = new OrderManagement.OrderManager();
+            orderManager.AddOrder("ORDER1");
+            orderManager.SendOrder("Starship_A1");
+            orderManager.ListOrders();
+            orderManager.UpdateStock("Starship_A1", 5);
+            orderManager.SendOrder("Starship_A1");
+            orderManager.ListOrders();
         }
     }
 }
