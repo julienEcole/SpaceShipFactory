@@ -126,6 +126,7 @@ namespace starShipFactory.CLI
             }
         }
 
+
         private Component CreateComponentFromString(string componentName)
         {
             string[] parts = componentName.Split('_');
@@ -146,7 +147,7 @@ namespace starShipFactory.CLI
                     }
                     break;
                 case "hull":
-                    if (Enum.TryParse(typeName, true, out hullType hullType))
+                    if (Enum.TryParse(typeName, true, out HullType hullType)) 
                     {
                         return Hull.Of(hullType);
                     }
