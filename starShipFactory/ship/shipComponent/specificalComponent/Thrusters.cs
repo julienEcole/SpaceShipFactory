@@ -1,39 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace starShipFactory.ship.shipComponent.specificalComponent
 {
     public class Thrusters : Component
     {
         public ThrusterType Type { get; }
+
         private Thrusters(ThrusterType type)
         {
-            this.Type = type;
+            Type = type;
         }
 
         public static Thrusters Of(ThrusterType type = ThrusterType.Thrusters_scrap)
         {
-            Thrusters nouveau = new Thrusters(type);
-            //ajouter l'élément a l'inventaire de l'atelier (cache pour composant non utilisé) quand il sera dispo
-            return nouveau;
+            return new Thrusters(type);
         }
 
-        override public string ToString()
+        public override string ToString()
         {
-            // Utiliser Reflection pour obtenir la valeur de description de l'énumération
-            string typeName = Type.GetType()
-                                   .GetMember(Type.ToString())
-                                   .First()
-                                   .GetCustomAttribute<DescriptionAttribute>()?.Description ?? Type.ToString();
-
-            return /*{GetType().Name}_*/$"{typeName}";
+            return ShipComponentDescription.GetDescription(Type);
         }
-
     }
 
     public enum ThrusterType

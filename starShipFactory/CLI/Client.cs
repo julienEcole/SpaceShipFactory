@@ -2,11 +2,20 @@
 using starShipFactory.cache;
 using starShipFactory.ship.shipComponent;
 using starShipFactory.ship.shipComponent.specificalComponent;
+using starShipFactory.OrderManagement;
+using System;
 
 namespace starShipFactory.CLI
 {
     internal class Client
     {
+        private OrderManager orderManager;
+
+        public Client()
+        {
+            orderManager = new OrderManager();
+        }
+
         public void Run()
         {
             Console.WriteLine("Bienvenue dans l'usine de vaisseaux !");
@@ -52,13 +61,25 @@ namespace starShipFactory.CLI
             {
                 ReceiveCommand(command);
             }
+            else if (command.StartsWith("ORDER"))
+            {
+                AddOrder(command);
+            }
+            else if (command.StartsWith("SEND"))
+            {
+                SendOrder(command);
+            }
+            else if (command.StartsWith("LIST_ORDER"))
+            {
+                ListOrders();
+            }
             else if (command.ToLower() == "help")
             {
                 DisplayHelp();
             }
             else
             {
-                Console.WriteLine("Commande non reconnue. Tapez 'help' pour obtenir la liste des commandes");
+                Console.WriteLine("Commande non reconnue. Tapez 'help' pour obtenir la liste des commandes.");
             }
         }
 
@@ -126,6 +147,40 @@ namespace starShipFactory.CLI
             }
         }
 
+        private void AddOrder(string command)
+        {
+            Console.WriteLine("=== ADD ORDER ===");
+            string[] parts = command.Split(' ');
+            if (parts.Length > 1)
+            {
+                orderManager.AddOrder(parts[1]);
+            }
+            else
+            {
+                Console.WriteLine("Commande ORDER invalide.");
+            }
+        }
+
+        private void SendOrder(string command)
+        {
+            Console.WriteLine("=== SEND ORDER ===");
+            string[] parts = command.Split(' ');
+            if (parts.Length > 1)
+            {
+                orderManager.SendOrder(parts[1]);
+            }
+            else
+            {
+                Console.WriteLine("Commande SEND invalide.");
+            }
+        }
+
+        private void ListOrders()
+        {
+            Console.WriteLine("=== LIST ORDERS ===");
+            orderManager.ListOrders();
+        }
+
         private Component CreateComponentFromString(string componentName)
         {
             string[] parts = componentName.Split('_');
@@ -146,7 +201,7 @@ namespace starShipFactory.CLI
                     }
                     break;
                 case "hull":
-                    if (Enum.TryParse(typeName, true, out hullType hullType))
+                    if (Enum.TryParse(typeName, true, out HullType hullType))
                     {
                         return Hull.Of(hullType);
                     }
@@ -167,7 +222,6 @@ namespace starShipFactory.CLI
             return null;
         }
 
-
         private void DisplayHelp()
         {
             Console.WriteLine("Liste des commandes :");
@@ -177,6 +231,9 @@ namespace starShipFactory.CLI
             Console.WriteLine("VERIFY ARGS => Vérifier une commande");
             Console.WriteLine("PRODUCE ARGS => Produire une commande");
             Console.WriteLine("RECEIVE ARGS => Recevoir du stock");
+            Console.WriteLine("ORDER ARGS => Ajouter une commande");
+            Console.WriteLine("SEND ARGS => Envoyer un vaisseau");
+            Console.WriteLine("LIST_ORDER => Lister les commandes restantes");
             Console.WriteLine("EXIT => Quitter le programme");
         }
     }
