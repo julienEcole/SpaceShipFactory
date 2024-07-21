@@ -4,28 +4,30 @@ using starShipFactory.ship.shipComponent;
 
 namespace starShipFactory.cache
 {
-    public static class Atelier
+    public class Atelier
     {
+        // Déclaration de l'instance statique readonly
         private static readonly Atelier _instance = new Atelier();
 
-        static readonly Dictionary<string, int> Stock;
-        static readonly Dictionary<string, int> InProduction;
+        // Dictionnaire pour stocker les composants et leur production
+        private readonly Dictionary<string, int> Stock;
+        private readonly Dictionary<string, int> InProduction;
 
-        static Atelier()
+        // Constructeur privé pour empêcher l'instanciation directe
+        private Atelier()
         {
             Stock = new Dictionary<string, int>();
             InProduction = new Dictionary<string, int>();
         }
-        //
 
-        private Atelier() { }
-
+        // Propriété pour accéder à l'instance unique
         public static Atelier Instance
         {
             get { return _instance; }
         }
 
-        public static void AddStock(string typeName, int quantity)
+        // Méthode pour ajouter du stock
+        public void AddStock(string typeName, int quantity)
         {
             if (Stock.ContainsKey(typeName))
             {
@@ -37,12 +39,14 @@ namespace starShipFactory.cache
             }
         }
 
-        public static void AddStock(Component theComponent, int quantity)
+        // Surcharge de la méthode AddStock pour accepter un composant
+        public void AddStock(Component theComponent, int quantity)
         {
             AddStock(theComponent.ToString(), quantity);
         }
 
-        public static bool RemoveStock(string type, int quantity)
+        // Méthode pour retirer du stock
+        public bool RemoveStock(string type, int quantity)
         {
             if (Stock.ContainsKey(type))
             {
@@ -57,7 +61,8 @@ namespace starShipFactory.cache
             return false;
         }
 
-        public static void MoveFromStockToProduction(string typeName, int quantity)
+        // Méthode pour déplacer du stock vers la production
+        public void MoveFromStockToProduction(string typeName, int quantity)
         {
             if (RemoveStock(typeName, quantity))
             {
@@ -76,7 +81,8 @@ namespace starShipFactory.cache
             }
         }
 
-        public static void MoveBackToStockFromProduction(string typeName, int quantity)
+        // Méthode pour retourner de la production au stock
+        public void MoveBackToStockFromProduction(string typeName, int quantity)
         {
             if (InProduction.ContainsKey(typeName) && InProduction[typeName] >= quantity)
             {
@@ -96,7 +102,8 @@ namespace starShipFactory.cache
             }
         }
 
-        public static void GetBackAllToStockFromProduction()
+        // Méthode pour retourner toute la production au stock
+        public void GetBackAllToStockFromProduction()
         {
             foreach (var item in InProduction)
             {
@@ -112,7 +119,8 @@ namespace starShipFactory.cache
             InProduction.Clear();
         }
 
-        public static int GetQuantity(string type)
+        // Méthode pour obtenir la quantité en stock d'un type de composant
+        public int GetQuantity(string type)
         {
             if (Stock.ContainsKey(type))
             {
@@ -121,9 +129,11 @@ namespace starShipFactory.cache
             else return 0;
         }
 
-        internal static IEnumerable<KeyValuePair<string, int>> GetStocks()
+        // Méthode pour obtenir les stocks (à implémenter si nécessaire)
+        public IEnumerable<KeyValuePair<string, int>> GetStocks()
         {
-            throw new NotImplementedException();
+            // Implémentez cette méthode selon vos besoins
+            return Stock;
         }
     }
 }
