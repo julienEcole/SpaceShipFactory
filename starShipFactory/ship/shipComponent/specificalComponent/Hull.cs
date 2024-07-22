@@ -1,5 +1,10 @@
-﻿using System.ComponentModel;
-using System.Reflection;
+﻿using System.Reflection;
+
+using System;
+using System.Linq;
+using System.ComponentModel;
+
+
 
 namespace starShipFactory.ship.shipComponent.specificalComponent
 {
@@ -21,13 +26,27 @@ namespace starShipFactory.ship.shipComponent.specificalComponent
         {
             return ShipComponentDescription.GetDescription(Type);
         }
+
+                // Implémentation de GetName
+        public string GetName()
+        {
+            return this.ToString();
+        }
+
+        // Implémentation de GetDescription
+        public string GetDescription()
+        {
+            return this.ToString();
+        }
     }
 
     public enum HullType
     {
-        [Description("Hull_scrap")]
+        [Description("Hull scrap")]
         Hull_scrap,
-        [Description("Hull_HC1")]
-        Hull_HC1
+        [Description("Hull HC1")]
+        Hull_HC1,
+        [Description("Hull HE1")]
+        Hull_HE1
     }
 }

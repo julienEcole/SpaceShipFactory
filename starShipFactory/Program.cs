@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using starShipFactory.CLI;
+using starShipFactory.OrderManagement;
 using starShipFactory.ship.shipComponent;
 using starShipFactory.ship.shipComponent.specificalComponent;
 
@@ -10,11 +11,11 @@ namespace starShipFactory // Note: actual namespace depends on the project name.
     {
         static void Main(string[] args)
         {
-            // Initialisation du client CLI
+            // Initialize CLI client
             Client monCLI = new Client();
             monCLI.Run();
 
-            // Exemple de création de composants via ComponentFactory
+            // Example of creating components using ComponentFactory
             try
             {
                 Component engine = ComponentFactory.CreateComponent("engine", "Engine_EE1");
@@ -32,12 +33,17 @@ namespace starShipFactory // Note: actual namespace depends on the project name.
                 Console.WriteLine(ex.Message);
             }
 
-            // Initialisation de OrderManager
-            var orderManager = new OrderManagement.OrderManager();
-            orderManager.AddOrder("ORDER1");
-            orderManager.SendOrder("Starship_A1");
-            orderManager.ListOrders();
-            orderManager.UpdateStock("Starship_A1", 5);
+            // Initialize OrderManager and manage interactions
+            var orderManager = new OrderManager();
+            // Update stock with correct component instances
+            orderManager.UpdateStock(ComponentFactory.CreateComponent("engine", "Engine_EE1"), 10);
+            orderManager.UpdateStock(ComponentFactory.CreateComponent("hull", "Hull_HC1"), 5);
+            orderManager.UpdateStock(ComponentFactory.CreateComponent("thrusters", "Thrusters_TE1"), 20);
+            orderManager.UpdateStock(ComponentFactory.CreateComponent("wings", "Wings_WE1"), 15);
+
+            // Add an order and manage orders
+            // orderManager.AddOrder("ORDER1");
+            // orderManager.VerifyOrder("ORDER1");  // Assuming a verification method exists
             orderManager.SendOrder("Starship_A1");
             orderManager.ListOrders();
         }

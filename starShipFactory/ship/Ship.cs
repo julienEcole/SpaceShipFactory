@@ -86,74 +86,14 @@ namespace starShipFactory.ship
             }
         }
 
-        /*
-
-        public static Ship Of(string name, Hull[] cargos, Engine[] engines, Thrusters[] thrusters, Wings[] wings)
-            {
-            //Ship newShip;
-            /*if (ShipCache.GetShip(name) != null) return ShipCache.GetShip(name);
-            else
-            {
-                ShipCache.AddShip(new Ship(name, cargos, engines, thrusters, wings));
-                return ShipCache.GetShip(name);
-            }
-
-            // Vérification du nom du vaisseau
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentException("Le nom du vaisseau ne peut pas être vide.");
-            }
-
-            // Vérification des composants fournis
-            if (cargos == null || engines == null || thrusters == null || wings == null ||
-                cargos.Length == 0 || engines.Length == 0 || thrusters.Length == 0 || wings.Length == 0)
-            {
-                throw new ArgumentException("Le vaisseau doit avoir au moins un composant de chaque type.");
-            }
-
-            // Vérification de la disponibilité des composants dans le stock
-            foreach (Cargo cargo in cargos)
-            {
-                if (ComponentStock.GetQuantity(cargo.Type) <= 0)
-                {
-                    throw new InvalidOperationException($"La pièce {cargo.Type} n'est pas disponible dans le stock.");
-                }
-            }
-
-            foreach (Engine engine in engines)
-            {
-                if (ComponentStock.GetQuantity(engine.Type) <= 0)
-                {
-                    throw new InvalidOperationException($"La pièce {engine.Type} n'est pas disponible dans le stock.");
-                }
-            }
-
-            foreach (Thrusters thruster in thrusters)
-            {
-                if (ComponentStock.GetQuantity(thruster.Type) <= 0)
-                {
-                    throw new InvalidOperationException($"La pièce {thruster.Type} n'est pas disponible dans le stock.");
-                }
-            }
-
-            foreach (Wings wing in wings)
-            {
-                if (ComponentStock.GetQuantity(wing.Type) <= 0)
-                {
-                    throw new InvalidOperationException($"La pièce {wing.Type} n'est pas disponible dans le stock.");
-                }
-            }
-
-            // Si toutes les vérifications sont réussies, créer et retourner le vaisseau
-            if (ShipCache.GetShip(name) != null) return ShipCache.GetShip(name);
-            else
-            {
-                Ship newShip = new Ship(name, cargos, engines, thrusters, wings);
-                ShipCache.AddShip(newShip);
-                return newShip;
-            }
+        // Méthode abstraite à implémenter dans chaque sous-classe
+        // public Dictionary<Component, int> GetRequiredComponents(){
+        //     return new Dictionary<Component>();
+        // } 
+        public virtual Dictionary<Component, int> GetRequiredComponents()
+        {
+            return new Dictionary<Component, int>();
         }
-        */
     }
 
 }

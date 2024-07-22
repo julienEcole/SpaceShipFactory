@@ -8,8 +8,7 @@ namespace starShipFactory.ship.shipComponent
 {
     public interface Component    //se poser quelques questoins existanciel sur sa présence si elle a une utilité
     {
-
-        public abstract string ToString();
-        //public static abstract Component Of();
+    string GetName(); // Retourne le nom du composant.
+    string GetDescription(); // Utilise ShipComponentDescription pour retourner une description.
     }
 }

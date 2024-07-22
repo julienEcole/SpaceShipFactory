@@ -41,4 +41,5 @@ namespace starShipFactory.ship.shipComponent
             throw new ArgumentException($"Unknown component type or enum value: {componentType}, {enumType}");
         }
     }
+
 }

@@ -23,17 +23,29 @@ namespace starShipFactory.ship.shipComponent.specificalComponent
         {
             return ShipComponentDescription.GetDescription(Type);
         }
+        // Implémentation de GetName
+        public string GetName()
+        {
+            return this.ToString();
+        }
+
+        // Implémentation de GetDescription
+        public string GetDescription()
+        {
+            return this.ToString();
+        }
     }
 
     public enum WingsType
     {
-        [Description("Wings_scrap")]
+        [Description("Wings scrap")]
         Wings_scrap,
-        [Description("Wings_WE1")]
+        [Description("Wings WE1")]
         Wings_WE1,
-        [Description("Wings_WS1")]
+        [Description("Wings WS1")]
         Wings_WS1,
-        [Description("Wings_WC1")]
+        [Description("Wings WC1")]
         Wings_WC1
+        
     }
 }

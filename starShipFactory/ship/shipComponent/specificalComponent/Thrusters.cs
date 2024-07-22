@@ -23,17 +23,29 @@ namespace starShipFactory.ship.shipComponent.specificalComponent
         {
             return ShipComponentDescription.GetDescription(Type);
         }
+
+                // Implémentation de GetName
+        public string GetName()
+        {
+            return this.ToString();
+        }
+
+        // Implémentation de GetDescription
+        public string GetDescription()
+        {
+            return this.ToString();
+        }
     }
 
     public enum ThrusterType
     {
-        [Description("Thrusters_scrap")]
+        [Description("Thrusters scrap")]
         Thrusters_scrap,
-        [Description("Thrusters_TE1")]
+        [Description("Thrusters TE1")]
         Thrusters_TE1,
-        [Description("Thrusters_TS1")]
+        [Description("Thrusters TS1")]
         Thrusters_TS1,
-        [Description("Thrusters_TC1")]
+        [Description("Thrusters TC1")]
         Thrusters_TC1
     }
 }

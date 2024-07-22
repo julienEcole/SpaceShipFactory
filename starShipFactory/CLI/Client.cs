@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualBasic;
 using starShipFactory.cache;
+using starShipFactory.OrderManagement;
 using starShipFactory.ship.shipComponent;
 using starShipFactory.ship.shipComponent.specificalComponent;
-using starShipFactory.OrderManagement;
 using System;
 
 namespace starShipFactory.CLI
@@ -95,25 +95,22 @@ namespace starShipFactory.CLI
         private void DisplayNeededStocks(string command)
         {
             Console.WriteLine("=== NEEDED_STOCKS ===");
-            // Implémentation de l'affichage des stocks nécessaires
         }
 
         private void DisplayInstructions(string command)
         {
             Console.WriteLine("=== INSTRUCTIONS ===");
-            // Implémentation de l'affichage des instructions d'assemblage
         }
 
         private void VerifyCommand(string command)
         {
             Console.WriteLine("=== VERIFY ===");
-            // Implémentation de la vérification d'une commande
+            
         }
 
         private void ProduceCommand(string command)
         {
             Console.WriteLine("=== PRODUCE ===");
-            // Implémentation de la production d'une commande
         }
 
         private void ReceiveCommand(string command)
@@ -132,6 +129,7 @@ namespace starShipFactory.CLI
                         if (component != null)
                         {
                             Atelier.AddStock(component, quantity);
+                            Console.WriteLine($"Added {quantity} of {componentName} to stock.");
                         }
                         else
                         {
@@ -147,17 +145,20 @@ namespace starShipFactory.CLI
             }
         }
 
+
         private void AddOrder(string command)
         {
             Console.WriteLine("=== ADD ORDER ===");
             string[] parts = command.Split(' ');
-            if (parts.Length > 1)
+            if (parts.Length > 2)
             {
-                orderManager.AddOrder(parts[1]);
+                string orderId = parts[1];
+                string shipType = parts[2];
+                orderManager.AddOrder(orderId, shipType);
             }
             else
             {
-                Console.WriteLine("Commande ORDER invalide.");
+                Console.WriteLine("Usage: ORDER <orderId> <shipType>");
             }
         }
 
@@ -183,44 +184,63 @@ namespace starShipFactory.CLI
 
         private Component CreateComponentFromString(string componentName)
         {
+            Console.WriteLine($"Processing component: {componentName}");
+            
             string[] parts = componentName.Split('_');
             if (parts.Length < 2)
             {
+                Console.WriteLine($"Invalid format: {componentName}");
                 return null;
             }
 
             string className = parts[0].ToLower();
-            string typeName = parts[1];
+            string typeName = string.Join('_', parts.Skip(1));
+            string normalizedTypeName = NormalizeDescription(typeName);
+
+            Console.WriteLine($"Class: {className}, Type: {typeName}, Normalized Type: {normalizedTypeName}");
 
             switch (className)
             {
                 case "wings":
-                    if (Enum.TryParse(typeName, true, out WingsType wingsType))
+                    if (Enum.TryParse(typeof(WingsType), normalizedTypeName, true, out var wingsType))
                     {
-                        return Wings.Of(wingsType);
+                        Console.WriteLine($"Matched wings type: {wingsType}");
+                        return Wings.Of((WingsType)wingsType);
                     }
                     break;
                 case "hull":
-                    if (Enum.TryParse(typeName, true, out HullType hullType))
+                    if (Enum.TryParse(typeof(HullType), normalizedTypeName, true, out var hullType))
                     {
-                        return Hull.Of(hullType);
+                        Console.WriteLine($"Matched hull type: {hullType}");
+                        return Hull.Of((HullType)hullType);
                     }
                     break;
                 case "thrusters":
-                    if (Enum.TryParse(typeName, true, out ThrusterType thrusterType))
+                    if (Enum.TryParse(typeof(ThrusterType), normalizedTypeName, true, out var thrusterType))
                     {
-                        return Thrusters.Of(thrusterType);
+                        Console.WriteLine($"Matched thrusters type: {thrusterType}");
+                        return Thrusters.Of((ThrusterType)thrusterType);
                     }
                     break;
                 case "engine":
-                    if (Enum.TryParse(typeName, true, out EngineType engineType))
+                    if (Enum.TryParse(typeof(EngineType), normalizedTypeName, true, out var engineType))
                     {
-                        return Engine.Of(engineType);
+                        Console.WriteLine($"Matched engine type: {engineType}");
+                        return Engine.Of((EngineType)engineType);
                     }
                     break;
             }
+
+            Console.WriteLine($"No match found for: {componentName}");
             return null;
         }
+
+        private string NormalizeDescription(string typeName)
+        {
+            // Transforme les noms en descriptions compatibles avec les enums
+            return typeName.Replace('_', ' ').ToUpper();
+        }
+
 
         private void DisplayHelp()
         {

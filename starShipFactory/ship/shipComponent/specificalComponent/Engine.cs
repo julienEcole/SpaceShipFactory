@@ -7,14 +7,14 @@ namespace starShipFactory.ship.shipComponent.specificalComponent
 {
     public class Engine : Component
     {
-        public EngineType Type { get; }
+        public EngineType Type { get; private set; }
 
         private Engine(EngineType type)
         {
             Type = type;
         }
 
-        public static Engine Of(EngineType type = EngineType.Engine_Scrap)
+        public static Engine Of(EngineType type)
         {
             return new Engine(type);
         }
@@ -23,17 +23,29 @@ namespace starShipFactory.ship.shipComponent.specificalComponent
         {
             return ShipComponentDescription.GetDescription(Type);
         }
+
+        // Implémentation de GetName
+        public string GetName()
+        {
+            return this.ToString();
+        }
+
+        // Implémentation de GetDescription
+        public string GetDescription()
+        {
+            return this.ToString();
+        }
     }
 
     public enum EngineType
     {
-        [Description("Engine_Scrap")]
+        [Description("Engine Scrap")]
         Engine_Scrap,
-        [Description("Engine_EE1")]
+        [Description("Engine EE1")]
         Engine_EE1,
-        [Description("Engine_ES1")]
+        [Description("Engine ES1")]
         Engine_ES1,
-        [Description("Engine_EC1")]
+        [Description("Engine EC1")]
         Engine_EC1
     }
 }
